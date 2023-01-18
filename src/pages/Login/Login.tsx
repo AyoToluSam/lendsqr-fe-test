@@ -1,8 +1,8 @@
 import React from 'react'
 import './Login.scss'
-import union from '../../assets/union.png'
-import lendsqr from '../../assets/lendsqr.png'
-import pablo from '../../assets/pablo-sign-in.jpg'
+import union from '../../assets/images/union.png'
+import lendsqr from '../../assets/images/lendsqr.png'
+import pablo from '../../assets/images/pablo-sign-in.jpg'
 
 const Login = () => {
   return (

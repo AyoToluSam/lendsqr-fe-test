@@ -1,4 +1,4 @@
 import icons from "./icons";
-import data from "./data";
+import dashboardData from "./dashboardData";
 
-export { icons, data } 
+export { icons, dashboardData } 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
-import Login from './Components/Login/Login';
-import Dashboard from './Components/Dashboard/Dashboard';
+import Login from './pages/Login/Login';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 const App = () => {
   return (
