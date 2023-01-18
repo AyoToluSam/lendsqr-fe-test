@@ -1,9 +1,17 @@
+import { useTable } from 'react-table';
 import './DashboardUsersTable.scss'
+import { Iuser } from '../../constants/types'
 
+type tableProps = {
+  data: Iuser[];
+}
 
-const DashboardUsersTable = () => {
+const DashboardUsersTable = ({data}: tableProps) => {
+  
   return (
-    <div>DashboardUsersTable</div>
+    <div>
+      {data[0].profile.firstName}
+    </div>
   )
 }
 
