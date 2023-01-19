@@ -3,29 +3,29 @@ import icons from "./icons"
 type cardDataTypes = {
   iconUrl: string,
   title: string,
-  userNum: number
+  userNum: string
 }
 
 const cardData: cardDataTypes[] = [
   {
     iconUrl: icons.groupUsers,
     title: "USERS",
-    userNum: 2453
+    userNum: "2,453"
   },
   {
     iconUrl: icons.activeUsers,
     title: "ACTIVE USERS",
-    userNum: 2453
+    userNum: "2,453"
   },
   {
     iconUrl: icons.userLoans,
     title: "USERS WITH LOANS",
-    userNum: 12453
+    userNum: "12,453"
   },
   {
-    iconUrl: icons.userLoans,
-    title: "USERS WITH LOANS",
-    userNum: 12453
+    iconUrl: icons.userSavings,
+    title: "USERS WITH SAVINGS",
+    userNum: "102,453"
   }
 ];
 

@@ -5,7 +5,7 @@ type CardProps = {
   cardDetails: {
     iconUrl: string,
     title: string,
-    userNum: number
+    userNum: string
   }
 }
 
