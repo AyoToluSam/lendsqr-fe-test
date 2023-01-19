@@ -35,6 +35,7 @@ import userFriends from '../assets/icons/user-friends.png'
 import userTimes from '../assets/icons/user-times.png'
 import user from '../assets/icons/user.png'
 import users from '../assets/icons/users.png'
+import details from '../assets/icons/details.png'
 
 
 
@@ -75,5 +76,6 @@ export default {
   userFriends,
   userTimes,
   user,
-  users
+  users,
+  details
 }

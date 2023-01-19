@@ -72,6 +72,7 @@ const DashboardUsersTable = ({data}: tableProps) => {
                )
              })}
              <td>{statuses[Math.floor(Math.random()*4)]}</td>
+             <td><img src={icons.details} alt="details" /></td>
            </tr>
          )
        })}
