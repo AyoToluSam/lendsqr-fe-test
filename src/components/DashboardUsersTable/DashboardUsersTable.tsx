@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useTable } from 'react-table';
+import { useTable, TableOptions, Column } from 'react-table';
 import './DashboardUsersTable.scss'
 import { icons } from '../../constants';
 import { Iuser } from '../../constants/types'
@@ -9,43 +9,31 @@ type tableProps = {
 }
 
 const DashboardUsersTable = ({data}: tableProps) => {
-  
-  const filter = () => {
-    return (
-      <img src={icons.filter} alt="filter" />
-    )
-  }
 
-  const tableData = useMemo(() => [...data], [data]);
-
-  const columns = useMemo(() => [
+  const columns: Column[] = useMemo(() => [
     {
-      Header: `ORGANIZATION ${filter}`,
+      Header: `ORGANIZATION`,
       accessor: "orgName"
     },
     {
-      Header: `USERNAME ${filter}`,
+      Header: `USERNAME`,
       accessor: "userName"
     },
     {
-      Header: `EMAIL ${filter}`,
+      Header: `EMAIL`,
       accessor: "email"
     },
     {
-      Header: `PHONE NUMBER ${filter}`,
+      Header: `PHONE NUMBER`,
       accessor: "phoneNumber"
     },
     {
-      Header: `DATE JOINED ${filter}`,
+      Header: `DATE JOINED`,
       accessor: "createdAt"
-    },
-    {
-      Header: `STATUS ${filter}`,
-      accessor: "inactive"
     },
   ], []);
 
-  const tableInstance = useTable({ columns, tableData })
+  const tableInstance = useTable({ columns, data });
 
   const { 
     getTableProps,
@@ -54,38 +42,36 @@ const DashboardUsersTable = ({data}: tableProps) => {
     rows,
     prepareRow,  
   } = tableInstance;
+
+  const statuses = ["Inactive", "Pending", "Blacklisted", "Active"]
   
   return (
     <table {...getTableProps()}>
      <thead>
-       {
-       headerGroups.map( headerGroup => (
+       {headerGroups.map( headerGroup => (
          <tr {...headerGroup.getHeaderGroupProps()}>
-           {
-           headerGroup.headers.map( column => (
+           {headerGroup.headers.map( column => (
              <th {...column.getHeaderProps()}>
-               {
-               column.render('Header')}
+               {column.render('Header')} <img src={icons.filter} alt="filter" />
              </th>
            ))}
+           <th>STATUS <img src={icons.filter} alt="filter" /></th>
          </tr>
        ))}
      </thead>
      <tbody {...getTableBodyProps()}>
-       {
-       rows.map(row => {
+       {rows.map(row => {
          prepareRow(row)
          return (
            <tr {...row.getRowProps()}>
-             {
-             row.cells.map(cell => {
+             {row.cells.map(cell => {
                return (
                  <td {...cell.getCellProps()}>
-                   {
-                   cell.render('Cell')}
+                   {cell.render('Cell')}
                  </td>
                )
              })}
+             <td>{statuses[Math.floor(Math.random()*4)]}</td>
            </tr>
          )
        })}

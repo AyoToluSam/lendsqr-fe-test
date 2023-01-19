@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import './Dashboard.scss'
 import { DashboardCardList, DashboardList, DashboardNav, DashboardTableNav, DashboardUsersTable } from '../../components'
 
+
 const Dashboard = () => {
   
-  const [tableData, setTableData] = useState<any[]>([]);
+  const [tableData, setTableData] = useState<any>([]);
 
   const fetchTableData = async () => {
 
@@ -14,9 +15,8 @@ const Dashboard = () => {
     const response = await axios.get(url).catch(err => console.log(err));
 
     if (response) {
-      const tableData = response.data;
-      console.log(tableData);
-      setTableData(tableData);
+      console.log(response.data);
+      setTableData(response.data);
     }
   }
 
