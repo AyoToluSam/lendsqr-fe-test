@@ -41,7 +41,7 @@ const Dashboard = () => {
           <div className="dashboard_users">
             <h2>Users</h2>
             <DashboardCardList/>
-            <DashboardUsersTable data={tableData} />
+            <DashboardUsersTable data={data} />
           </div>
           <DashboardTableNav/>
         </div>

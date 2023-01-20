@@ -1,8 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useTable, Column } from 'react-table';
 import './DashboardUsersTable.scss'
 import { icons } from '../../constants';
 import { Iuser } from '../../constants/types'
+import UsersDetails from '../../pages/UserDetails/UserDetails';
+
 
 type tableProps = {
   data: Iuser[];
@@ -14,6 +16,17 @@ const DashboardUsersTable = ({data}: tableProps) => {
 
   const [userID, setUserID] = useState<any>();
 
+  const [userDetails, setUserDetails] = useState<any>();
+
+  useEffect(() => {
+    console.log(UsersDetails)
+  
+    return () => {
+      window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
+    }
+  }, [userDetails])
+  
+
   const handleClick = () => {
     setViewDetails((prev) => {
       return !prev
@@ -21,7 +34,12 @@ const DashboardUsersTable = ({data}: tableProps) => {
 
     setUserID( (e: any) => {
       let userID = e.target["user-id"];
+      console.log("origin:", userID);
+      return userID
     })
+
+    setUserDetails(data[Number(userID)]);
+
   }
 
   const columns: Column[] = useMemo(() => [
@@ -74,7 +92,7 @@ const DashboardUsersTable = ({data}: tableProps) => {
        ))}
      </thead>
      <tbody {...getTableBodyProps()}>
-       {rows.map((row, i) => {
+       {rows.map((row, userIndex) => {
          prepareRow(row)
          return (
            <tr {...row.getRowProps()}>
@@ -87,7 +105,7 @@ const DashboardUsersTable = ({data}: tableProps) => {
              })}
              <td>{statuses[Math.floor(Math.random()*4)]}</td>
              <td>
-              <img user-id={i} onClick={handleClick} src={icons.details} alt="details" />
+              <img user-id={userIndex} onClick={handleClick} src={icons.details} alt="details" />
               <div className={ viewDetails ? 'viewDetails displayNone' : 'viewDetails'}>
                 <a href="/pages/userDetails"><img src={icons.eye} alt="eye" /> View Details</a>
                 <a href=""><img src={icons.blacklist} alt="blacklist" /> Blacklist User</a>

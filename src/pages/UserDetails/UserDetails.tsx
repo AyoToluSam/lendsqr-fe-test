@@ -23,7 +23,7 @@ const UsersDetails = () => {
               <button>ACTIVATE USER</button>
             </div>
           </div>
-          <DashboardUserDetails userID={userID} /> 
+          <DashboardUserDetails/> 
         </div>
       </div>
 

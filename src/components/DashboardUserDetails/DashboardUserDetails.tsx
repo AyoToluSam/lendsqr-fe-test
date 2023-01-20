@@ -1,30 +1,21 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useState, useEffect, useContext } from 'react'
 import './DashboardUserDetails.scss'
 import { icons } from '../../constants'
 
-
-const DashboardUserDetails = ({userID}) => {
-
+const DashboardUserDetails = () => {
+  
   const [userDetails, setUserDetails] = useState<any>([]);
 
-  const fetchUserDetails = async () => {
-
-    const url = "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/"
-
-    const response = await axios.get(url + userID).catch(err => console.log(err));
-
-    if (response) {
-      console.log(response.data);
-      setUserDetails(response.data);
-    }
-  }
-
   useEffect(() => {
-    fetchUserDetails();
+    const userDetails: any = window.localStorage.getItem("userDetails");
+  
+    return () => {
+      setUserDetails(JSON.parse(userDetails));
+    }
   }, [])
+  
 
-  const userDetailsArray = [
+  let userDetailsArray = [
     {
       "Personal Information" : [
         {
@@ -131,7 +122,7 @@ const DashboardUserDetails = ({userID}) => {
     },
   ];
   
-  const detailsInfo = userDetailsArray.map((details : { [key: string]: any }, i) => {
+  let detailsInfo = userDetailsArray.map((details : { [key: string]: any }) => {
 
     const infoTitle = Object.keys(details)[0];
     const cardTitle = details[infoTitle].title

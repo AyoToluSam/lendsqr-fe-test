@@ -26,7 +26,7 @@ const DashboardCardList = () => {
       {
         cardData.map( (card, i) => {
           return (
-            <Card key={i} cardDetails ={card} />
+            <Card key={i} cardDetails={card} />
           )
         })
       }
