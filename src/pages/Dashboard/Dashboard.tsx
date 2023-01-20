@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import './Dashboard.scss'
 import { DashboardCardList, DashboardList, DashboardNav, DashboardTableNav, DashboardUsersTable } from '../../components'
-
+import { Iuser } from '../../constants/types';
 
 const Dashboard = () => {
   
@@ -23,6 +23,14 @@ const Dashboard = () => {
   useEffect(() => {
     fetchTableData();
   }, [])
+
+  const data = tableData.map( (each: Iuser) => {
+    const dateNum = new Date(each.createdAt);
+    const date = new Date(dateNum).toLocaleDateString();
+    return each.createdAt = date;
+  })
+
+  console.log(data);
   
   return (
     <div className='app_dashboard'>
