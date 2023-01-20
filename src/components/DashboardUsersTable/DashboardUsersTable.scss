@@ -1,0 +1,12 @@
+.dashboard_usersTable {
+
+  .viewDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .displayNone {
+    display: none;
+  }
+}

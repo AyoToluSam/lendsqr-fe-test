@@ -174,6 +174,6 @@ const dashboardData: dashboardDataTypes[] = [
     title: "v1.2.0",
     className: "dropdown_version displayNone"
   },
-]
+];
 
 export default dashboardData

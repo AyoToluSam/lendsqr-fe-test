@@ -1,5 +1,5 @@
-import { useMemo } from 'react'
-import { useTable, TableOptions, Column } from 'react-table';
+import { useMemo, useState } from 'react'
+import { useTable, Column } from 'react-table';
 import './DashboardUsersTable.scss'
 import { icons } from '../../constants';
 import { Iuser } from '../../constants/types'
@@ -9,6 +9,20 @@ type tableProps = {
 }
 
 const DashboardUsersTable = ({data}: tableProps) => {
+
+  const [viewDetails, setViewDetails] = useState(false);
+
+  const [userID, setUserID] = useState<any>();
+
+  const handleClick = () => {
+    setViewDetails((prev) => {
+      return !prev
+    })
+
+    setUserID( (e: any) => {
+      let userID = e.target["user-id"];
+    })
+  }
 
   const columns: Column[] = useMemo(() => [
     {
@@ -43,10 +57,10 @@ const DashboardUsersTable = ({data}: tableProps) => {
     prepareRow,  
   } = tableInstance;
 
-  const statuses = ["Inactive", "Pending", "Blacklisted", "Active"]
+  const statuses = ["Inactive", "Pending", "Blacklisted", "Active"];
   
   return (
-    <table {...getTableProps()}>
+    <table className='dashboard_usersTable' {...getTableProps()}>
      <thead>
        {headerGroups.map( headerGroup => (
          <tr {...headerGroup.getHeaderGroupProps()}>
@@ -60,7 +74,7 @@ const DashboardUsersTable = ({data}: tableProps) => {
        ))}
      </thead>
      <tbody {...getTableBodyProps()}>
-       {rows.map(row => {
+       {rows.map((row, i) => {
          prepareRow(row)
          return (
            <tr {...row.getRowProps()}>
@@ -72,7 +86,14 @@ const DashboardUsersTable = ({data}: tableProps) => {
                )
              })}
              <td>{statuses[Math.floor(Math.random()*4)]}</td>
-             <td><img src={icons.details} alt="details" /></td>
+             <td>
+              <img user-id={i} onClick={handleClick} src={icons.details} alt="details" />
+              <div className={ viewDetails ? 'viewDetails displayNone' : 'viewDetails'}>
+                <a href="/pages/userDetails"><img src={icons.eye} alt="eye" /> View Details</a>
+                <a href=""><img src={icons.blacklist} alt="blacklist" /> Blacklist User</a>
+                <a href=""><img src={icons.activeUser} alt="" /> Activate User</a>
+              </div>
+             </td>
            </tr>
          )
        })}

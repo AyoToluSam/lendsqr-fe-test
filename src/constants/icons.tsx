@@ -36,6 +36,9 @@ import userTimes from '../assets/icons/user-times.png'
 import user from '../assets/icons/user.png'
 import users from '../assets/icons/users.png'
 import details from '../assets/icons/details.png'
+import eye from '../assets/icons/eye.png'
+import activeUser from '../assets/icons/active-user.png'
+import blacklist from '../assets/icons/blacklist.png'
 
 
 
@@ -77,5 +80,8 @@ export default {
   userTimes,
   user,
   users,
-  details
+  details,
+  eye,
+  activeUser,
+  blacklist
 }

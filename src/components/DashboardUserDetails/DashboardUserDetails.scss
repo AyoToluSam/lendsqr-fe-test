@@ -1,0 +1,40 @@
+.userDetails {
+  display: flex;
+  flex-direction: column;
+
+  .userDetails_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .header_mainInfo {
+      display: flex;
+
+      .user {
+        display: flex;
+        gap: 1rem;
+        border-right: 1px solid grey;
+      }
+
+      .user_tier {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-right: 1px solid grey;
+      }
+
+      .user_account {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+    }
+
+    .info_headings {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
+}
