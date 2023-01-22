@@ -1,14 +1,17 @@
-import React from 'react';
 import './App.scss';
+import { Route, Routes } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import UsersDetails from './pages/UserDetails/UserDetails';
+import { DashboardNav, DashboardList } from './components';
 
 const App = () => {
   return (
-    <div className='container'>
-      <UsersDetails />
-    </div>
+    <Routes>
+      <Route path='/' element={<Login/>} ></Route>
+      <Route path='/dashboard' element={<Dashboard/>} ></Route>
+      <Route path='/user-details' element={<UsersDetails/>} ></Route>
+    </Routes>
   )
 }
 

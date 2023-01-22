@@ -6,7 +6,7 @@ const DashboardTableNav = () => {
     <div className="dashboard_tableNav">
       <div className="tableNav_left">
         <p>showing</p>
-        <select value={100} name="" id="">
+        <select defaultValue={100} name="" id="">
           <option value="100">100</option>
           <option value="50">50</option>
           <option value="10">10</option>

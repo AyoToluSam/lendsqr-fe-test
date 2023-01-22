@@ -3,15 +3,16 @@ import union from '../../assets/images/union.png'
 import lendsqr from '../../assets/images/lendsqr.png'
 import profileImg from '../../assets/images/profile-img.png'
 import { icons } from '../../constants'
+import { Link } from 'react-router-dom'
 
 
 const DashboardNav = () => {
   return (
     <nav className='dashboard_nav'>
-      <div className='nav_logo'>
+      <Link to="/"><div className='nav_logo'>
         <img src={union} alt="logo" />
         <img src={lendsqr} alt="logo" />
-      </div>
+      </div></Link>
       <div className='nav_searchBar'> 
         <input type="text" name='search' />
         <label htmlFor="search"><img src={icons.search} alt="search" /></label>

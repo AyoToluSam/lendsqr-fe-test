@@ -1,9 +1,27 @@
 .dashboard_usersTable {
 
+  .detailsBtn {
+    position: relative;
+  }
+
   .viewDetails {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    bottom: 1rem;
+    right: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    transform: scale(0.5);
+    background-color: gray;
+
+    .actions {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   .displayNone {

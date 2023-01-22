@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import './Login.scss'
 import union from '../../assets/images/union.png'
 import lendsqr from '../../assets/images/lendsqr.png'
@@ -24,7 +24,7 @@ const Login = () => {
             <input type="text" name='email' placeholder='Email' />
             <input type="password" name='password' placeholder='Password' />
             <p><a href="">FORGOT PASSWORD?</a></p>
-            <button>LOG IN</button>
+            <Link to="/dashboard" ><button>LOG IN</button></Link>
           </div>
         </div>
       </div>

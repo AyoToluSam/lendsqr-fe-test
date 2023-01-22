@@ -1,14 +1,14 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import './Dashboard.scss'
+import axios from 'axios';
+import { useState, useMemo, useEffect } from 'react';
 import { DashboardCardList, DashboardList, DashboardNav, DashboardTableNav, DashboardUsersTable } from '../../components'
-import { Iuser } from '../../constants/types';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   
-  const [tableData, setTableData] = useState<any>([]);
+  const [usersData, setUsersData] = useState<any>([]);
 
-  const fetchTableData = async () => {
+  const fetchUsersData = async () => {
 
     const url = "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users"
 
@@ -16,22 +16,27 @@ const Dashboard = () => {
 
     if (response) {
       console.log(response.data);
-      setTableData(response.data);
+      setUsersData(response.data);
     }
   }
 
   useEffect(() => {
-    fetchTableData();
+    fetchUsersData();
   }, [])
-
-  const data = tableData.map( (each: Iuser) => {
+  
+  const formattedData = usersData.map( (each: any) => {
     const dateNum = new Date(each.createdAt);
     const date = new Date(dateNum).toLocaleDateString();
-    return each.createdAt = date;
+    each.createdAt = date;
+    return each
   })
-
-  console.log(data);
   
+  console.log(formattedData);
+
+  window.localStorage.setItem("defaultUser", JSON.stringify([formattedData[0]]));
+
+  const tableData = useMemo(() => [...formattedData], [formattedData])
+
   return (
     <div className='app_dashboard'>
       <DashboardNav/>
@@ -39,9 +44,9 @@ const Dashboard = () => {
         <DashboardList/>
         <div className="dashboard_display">
           <div className="dashboard_users">
-            <h2>Users</h2>
+            <Link to="/user-details" ><h2>Users</h2></Link>
             <DashboardCardList/>
-            <DashboardUsersTable data={data} />
+            <DashboardUsersTable tableData={tableData} />
           </div>
           <DashboardTableNav/>
         </div>

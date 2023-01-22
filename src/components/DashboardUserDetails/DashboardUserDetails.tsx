@@ -1,42 +1,36 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import './DashboardUserDetails.scss'
 import { icons } from '../../constants'
 
 const DashboardUserDetails = () => {
-  
-  const [userDetails, setUserDetails] = useState<any>([]);
 
-  useEffect(() => {
-    const userDetails: any = window.localStorage.getItem("userDetails");
-  
-    return () => {
-      setUserDetails(JSON.parse(userDetails));
-    }
-  }, [])
-  
+  const userDetails: any = window.localStorage.getItem("userDetails");
+  console.log(userDetails)
 
-  let userDetailsArray = [
-    {
+  const parsedData: any = JSON.parse(userDetails)
+  console.log("parsedData: ", parsedData)
+
+  let userDetailsObj: any = {
       "Personal Information" : [
         {
           title: "FULL NAME",
-          content: userDetails.profile.firstName + " " + userDetails.profile.lastName
+          content: parsedData.profile ? parsedData.profile.firstName + " " + parsedData.profile.lastName : "null"
         },
         {
           title: "PHONE NUMBER",
-          content: userDetails.phoneNumber
+          content: parsedData.phoneNumber
         },
         {
           title: "EMAIL ADDRESS",
-          content: userDetails.email
+          content: parsedData.email
         },
         {
           title: "BVN",
-          content: userDetails.profile.bvn
+          content: parsedData.profile ? parsedData.profile.bvn : "null"
         },
         {
           title: "GENDER",
-          content: userDetails.profile.gender
+          content: parsedData.profile ? parsedData.profile.gender : "null"
         },
         {
           title: "MARITAL STATUS",
@@ -50,65 +44,59 @@ const DashboardUserDetails = () => {
           title: "TYPE OF RESIDENCE",
           content: "N/A"
         }
-      ]
-    },
-    {
+      ],
       "Education and Employment" : [
         {
           title: "LEVEL OF EDUCATION",
-          content: userDetails.education.level
+          content: parsedData.education ? parsedData.education.level : "null"
         },
         {
           title: "EMPLOYMENT STATUS",
-          content: userDetails.education.employmentStatus
+          content: parsedData.education ? parsedData.education.employmentStatus : "null"
         },
         {
           title: "SECTOR OF EMPLOYMENT",
-          content: userDetails.education.sector
+          content: parsedData.education ? parsedData.education.sector : "null"
         },
         {
           title: "DURATION OF EMPLOYMENT",
-          content: userDetails.education.duration
+          content: parsedData.education ? parsedData.education.duration : "null"
         },
         {
           title: "OFFICE EMAIL",
-          content: userDetails.education.officeEmail
+          content: parsedData.education ? parsedData.education.officeEmail : "null"
         },
         {
           title: "MONTHLY INCOME",
-          content: userDetails.education.monthlyIncome[0] + "-" + userDetails.education.monthlyIncome[1]
+          content: parsedData.education ? parsedData.education.monthlyIncome[0] + "-" + parsedData.education.monthlyIncome[1] : "null"
         },
         {
           title: "LOAN REPAYMENT",
-          content: userDetails.education.loanRepayment
+          content: parsedData.education ? parsedData.education.loanRepayment : "null"
         }
-      ]
-    },
-    {
+      ],
       "Socials" : [
         {
           title: "TWITTER",
-          content: userDetails.socials.twitter
+          content: parsedData.socials ? parsedData.socials.twitter : "null"
         },
         {
           title: "FACEBOOK",
-          content: userDetails.socials.facebook
+          content: parsedData.socials ? parsedData.socials.facebook : "null"
         },
         {
           title: "INSTAGRAM",
-          content: userDetails.socials.instagram
+          content: parsedData.socials ? parsedData.socials.instagram : "null"
         }
-      ]
-    },
-    {
+      ],
       "Guarantor" : [
         {
           title: "FULL NAME",
-          content: userDetails.guarantor.firstName + " " + userDetails.guarantor.lastName
+          content: parsedData.guarantor ? parsedData.guarantor.firstName + " " + parsedData.guarantor.lastName : "null"
         },
         {
           title: "PHONE NUMBER",
-          content: userDetails.guarantor.phoneNumber
+          content: parsedData.guarantor ? parsedData.guarantor.phoneNumber : "null"
         },
         {
           title: "EMAIL ADDRESS",
@@ -118,26 +106,38 @@ const DashboardUserDetails = () => {
           title: "RELATIONSHIP",
           content: "N/A" 
         }
-      ]
-    },
-  ];
-  
-  let detailsInfo = userDetailsArray.map((details : { [key: string]: any }) => {
+      ],
+    };
 
-    const infoTitle = Object.keys(details)[0];
-    const cardTitle = details[infoTitle].title
-    const cardContent = details[infoTitle].content
 
+  const Card = ({cardTitle, cardContent}: any) => {
     return (
-      <div className='info_section'>
-        <p className='section_title'>{infoTitle}</p>
-        <div className='section_cards'>
-          <div>
-            <p>{cardTitle}</p>
-            <p>{cardContent}</p>
-          </div>
-        </div>
+      <div className='cards'>
+        <p>{cardTitle}</p>
+        <p>{cardContent}</p>
       </div>
+    )
+  }
+
+  const sectionTitles = Object.keys(userDetailsObj);
+
+  const getSections = sectionTitles.map((sectionTitle: any, i) => {
+    let allCards : any = [];
+    const info = userDetailsObj[sectionTitle]
+    info.map((tile: any, j:number) => {
+      const cardTitle = tile.title
+      const cardContent = tile.content
+      allCards.push(<Card key={j} cardTitle={cardTitle} cardContent={cardContent} />)
+    })
+    return (
+    <div key={i} className="section_details">
+      <p className='section_title'>
+        {sectionTitle}
+      </p>
+      <div className='section_cards'>
+        {allCards}
+      </div>
+    </div>
     )
   })
 
@@ -148,7 +148,7 @@ const DashboardUserDetails = () => {
           <div className='user'>
             <div><img src="" alt="" /></div>
             <div className='user_name'>
-              <h2>Grace Effiom</h2>
+              <h2>{parsedData.profile.firstName + " " + parsedData.profile.lastName}</h2>
               <p>LSQFf587g90</p>
             </div>
           </div>
@@ -174,8 +174,8 @@ const DashboardUserDetails = () => {
           <p>App and System</p>
         </div>
       </div>
-      <div className='userDetails_info'>
-        {detailsInfo}
+      <div className='info_section'>
+        {getSections}
       </div>
     </div>
   )

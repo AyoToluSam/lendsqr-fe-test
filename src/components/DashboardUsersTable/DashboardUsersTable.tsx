@@ -1,71 +1,110 @@
-import { useMemo, useState, useEffect } from 'react'
-import { useTable, Column } from 'react-table';
 import './DashboardUsersTable.scss'
+import { useMemo, useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
+import { useTable, Column } from 'react-table';
 import { icons } from '../../constants';
-import { Iuser } from '../../constants/types'
-import UsersDetails from '../../pages/UserDetails/UserDetails';
 
 
-type tableProps = {
-  data: Iuser[];
-}
+const DashboardUsersTable = ({tableData}: any) => {
 
-const DashboardUsersTable = ({data}: tableProps) => {
-
-  const [viewDetails, setViewDetails] = useState(false);
-
+  const [viewDetails, setViewDetails] = useState<any>();
   const [userID, setUserID] = useState<any>();
-
   const [userDetails, setUserDetails] = useState<any>();
 
-  useEffect(() => {
-    console.log(UsersDetails)
-  
-    return () => {
-      window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
+  const handleClick = (event: any, row: any) => {
+    const allEls: any = document.querySelector("viewDetails");
+    console.log(allEls);
+    if (allEls != null) {
+      allEls.setAttribute("class", "displayNone");
     }
-  }, [userDetails])
-  
+    
+    setViewDetails(row.id)
 
-  const handleClick = () => {
-    setViewDetails((prev) => {
-      return !prev
-    })
+    const el: any = document.getElementById(viewDetails)
+    
+    el.setAttribute("class", "viewDetails");
 
-    setUserID( (e: any) => {
-      let userID = e.target["user-id"];
-      console.log("origin:", userID);
-      return userID
-    })
+    console.log("event: ", event.target)
 
-    setUserDetails(data[Number(userID)]);
+    console.log("row: ", row);
 
+    console.log("id: ", row.id)
+
+    console.log("data: ", row.original)
+    
+    setUserID(Number(row.id))
+
+    setUserDetails(row.original)
+
+    console.log("userdetails: ", userDetails)
   }
 
-  const columns: Column[] = useMemo(() => [
+  useEffect(() => {
+    console.log("sending: ", userDetails)
+    window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
+  }, [userID])
+  
+
+  const statusArray = ["Inactive", "Pending", "Blacklisted", "Active"];
+
+  const tableColumns = useMemo(() => [
     {
-      Header: `ORGANIZATION`,
+      Header: "ORGANIZATION",
       accessor: "orgName"
     },
     {
-      Header: `USERNAME`,
+      Header: "USERNAME",
       accessor: "userName"
     },
     {
-      Header: `EMAIL`,
+      Header: "EMAIL",
       accessor: "email"
     },
     {
-      Header: `PHONE NUMBER`,
+      Header: "PHONE NUMBER",
       accessor: "phoneNumber"
     },
     {
-      Header: `DATE JOINED`,
+      Header: "DATE JOINED",
       accessor: "createdAt"
     },
   ], []);
 
-  const tableInstance = useTable({ columns, data });
+  const tableHooks = (hooks: any) => {
+    hooks.visibleColumns.push( (columns: any) => [
+      ...columns,
+      {
+        id: "status",
+        Header: "STATUS",
+        Cell: () => (
+          statusArray[Math.floor(Math.random()*4)]
+        )
+      },
+      {
+        id: "details",
+        Cell: ({row}: any) => {     
+
+          let index = row.id
+
+          return (
+            <div onClick={(event) => handleClick(event, row)} className='detailsBtn'>
+              <img src={icons.details} alt="details" />
+              <div id={index} className="displayNone">
+                <Link className="actions" to="/user-details" ><img src={icons.eye} alt="eye" /><p>View Details</p></Link>
+                <a className="actions" href=""><img src={icons.blacklist} alt="blacklist" /><p>Blacklist User</p></a>
+                <a className="actions" href=""><img src={icons.activeUser} alt="" /><p>Activate User</p></a>
+              </div>
+            </div>
+          )
+        }
+      }
+    ])
+  }
+
+  const tableInstance = useTable(
+    {columns: tableColumns, data: tableData},
+    tableHooks
+    );
 
   const { 
     getTableProps,
@@ -74,8 +113,6 @@ const DashboardUsersTable = ({data}: tableProps) => {
     rows,
     prepareRow,  
   } = tableInstance;
-
-  const statuses = ["Inactive", "Pending", "Blacklisted", "Active"];
   
   return (
     <table className='dashboard_usersTable' {...getTableProps()}>
@@ -84,18 +121,19 @@ const DashboardUsersTable = ({data}: tableProps) => {
          <tr {...headerGroup.getHeaderGroupProps()}>
            {headerGroup.headers.map( column => (
              <th {...column.getHeaderProps()}>
-               {column.render('Header')} <img src={icons.filter} alt="filter" />
+               {column.render('Header')} 
+               <img src={icons.filter} alt="filter" />
              </th>
            ))}
-           <th>STATUS <img src={icons.filter} alt="filter" /></th>
          </tr>
        ))}
      </thead>
      <tbody {...getTableBodyProps()}>
-       {rows.map((row, userIndex) => {
+       {rows.map((row) => {
          prepareRow(row)
+         
          return (
-           <tr {...row.getRowProps()}>
+           <tr {...row.getRowProps()} >
              {row.cells.map(cell => {
                return (
                  <td {...cell.getCellProps()}>
@@ -103,15 +141,6 @@ const DashboardUsersTable = ({data}: tableProps) => {
                  </td>
                )
              })}
-             <td>{statuses[Math.floor(Math.random()*4)]}</td>
-             <td>
-              <img user-id={userIndex} onClick={handleClick} src={icons.details} alt="details" />
-              <div className={ viewDetails ? 'viewDetails displayNone' : 'viewDetails'}>
-                <a href="/pages/userDetails"><img src={icons.eye} alt="eye" /> View Details</a>
-                <a href=""><img src={icons.blacklist} alt="blacklist" /> Blacklist User</a>
-                <a href=""><img src={icons.activeUser} alt="" /> Activate User</a>
-              </div>
-             </td>
            </tr>
          )
        })}
