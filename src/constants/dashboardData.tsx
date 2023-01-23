@@ -5,7 +5,8 @@ type dashboardDataTypes = {
   iconUrl?: string,
   title: string,
   iconUrl2?: string,
-  className: string
+  className: string,
+  extraDiv?: boolean
 }
 
 const dashboardData: dashboardDataTypes[] = [
@@ -13,7 +14,7 @@ const dashboardData: dashboardDataTypes[] = [
    id: 0,
    iconUrl: icons.briefcase,
    title: "Switch Organization",
-   iconUrl2: icons.dropdown,
+   iconUrl2: icons.dropdownThin,
    className: "dropdown_main"
   },
   {
@@ -31,7 +32,8 @@ const dashboardData: dashboardDataTypes[] = [
     id: 3,
     iconUrl: icons.userFriends,
     title: "Users",
-    className: "dropdown_list"
+    className: "dropdown_main highlightParent paddingTop",
+    extraDiv: true
   },
   {
     id: 4,
@@ -83,7 +85,7 @@ const dashboardData: dashboardDataTypes[] = [
   {
     id: 12,
     iconUrl: icons.briefcase,
-    title: "Organization",
+    title: "Organization paddingTop",
     className: "dropdown_list"
   },
   {
@@ -142,7 +144,7 @@ const dashboardData: dashboardDataTypes[] = [
   {
     id: 22,
     iconUrl: icons.sliders,
-    title: "Preferences",
+    title: "Preferences paddingTop",
     className: "dropdown_list"
   },
   {

@@ -6,18 +6,23 @@ const DashboardList = () => {
 
   const dashboardList = dashboardData.map( (list) => {
     return (
-      <li key={list.id} className={list.className}>
-        {list.iconUrl && <img src={list.iconUrl} alt="icon" />} 
-        {list.title} 
-        { list.iconUrl2 && <img src={list.iconUrl2} alt="icon" />}
-      </li>
+      <div className='dashboard_dropdown'>
+        <div className={list.extraDiv ? "highlightWrapper" : ""} >
+          {list.extraDiv && <div className='highlightBox' ><div className='highlightDarker'></div><div className='highlight'></div></div>} 
+          <div key={list.id} className={list.className}>
+            {list.iconUrl && <img src={list.iconUrl} alt="icon" />} 
+            <p>{list.title} </p>
+            { list.iconUrl2 && <img src={list.iconUrl2} alt="icon" />}
+          </div>
+        </div>
+      </div>
     )
   })
 
   return (
-    <div className='dashboard_dropdown'>
+    <div className='dashboard_container'>
       {
-        <ul>{dashboardList}</ul>
+        dashboardList
       }
     </div>
   )

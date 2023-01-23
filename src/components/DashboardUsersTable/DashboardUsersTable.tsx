@@ -1,5 +1,5 @@
 import './DashboardUsersTable.scss'
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { useTable, Column } from 'react-table';
 import { icons } from '../../constants';
@@ -7,22 +7,17 @@ import { icons } from '../../constants';
 
 const DashboardUsersTable = ({tableData}: any) => {
 
-  const [viewDetails, setViewDetails] = useState<any>();
+  const [viewDetails, setViewDetails] = useState(false)
   const [userID, setUserID] = useState<any>();
   const [userDetails, setUserDetails] = useState<any>();
+  const display = useRef("displayNone")
+  const clicked = useRef<any>()
 
   const handleClick = (event: any, row: any) => {
-    const allEls: any = document.querySelector("viewDetails");
-    console.log(allEls);
-    if (allEls != null) {
-      allEls.setAttribute("class", "displayNone");
-    }
     
-    setViewDetails(row.id)
-
-    const el: any = document.getElementById(viewDetails)
+    display.current = "viewDetails"
     
-    el.setAttribute("class", "viewDetails");
+    setViewDetails(true)
 
     console.log("event: ", event.target)
 
@@ -35,14 +30,18 @@ const DashboardUsersTable = ({tableData}: any) => {
     setUserID(Number(row.id))
 
     setUserDetails(row.original)
-
-    console.log("userdetails: ", userDetails)
   }
 
   useEffect(() => {
     console.log("sending: ", userDetails)
     window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
   }, [userID])
+
+  useEffect(() => {
+    console.log("clicked", clicked.current)
+    display.current = "viewDetails"
+  }, [viewDetails])
+  
   
 
   const statusArray = ["Inactive", "Pending", "Blacklisted", "Active"];
@@ -84,15 +83,13 @@ const DashboardUsersTable = ({tableData}: any) => {
         id: "details",
         Cell: ({row}: any) => {     
 
-          let index = row.id
-
           return (
             <div onClick={(event) => handleClick(event, row)} className='detailsBtn'>
               <img src={icons.details} alt="details" />
-              <div id={index} className="displayNone">
+              <div className="displayNone" >
                 <Link className="actions" to="/user-details" ><img src={icons.eye} alt="eye" /><p>View Details</p></Link>
-                <a className="actions" href=""><img src={icons.blacklist} alt="blacklist" /><p>Blacklist User</p></a>
-                <a className="actions" href=""><img src={icons.activeUser} alt="" /><p>Activate User</p></a>
+                <div className="actions"><img src={icons.blacklist} alt="blacklist" /><p>Blacklist User</p></div>
+                <div className="actions"><img src={icons.activeUser} alt="" /><p>Activate User</p></div>
               </div>
             </div>
           )

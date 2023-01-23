@@ -5,7 +5,8 @@ type CardProps = {
   cardDetails: {
     iconUrl: string,
     title: string,
-    userNum: string
+    userNum: string,
+    color: string
   }
 }
 
@@ -14,9 +15,9 @@ const DashboardCardList = () => {
   const Card = ({cardDetails}: CardProps) => {
     return (
     <div className='dashboard_cards'>
-      <div><img src={cardDetails.iconUrl} alt="" /></div>
+      <div className={"cardImg " + cardDetails.color}><img src={cardDetails.iconUrl} alt="" /></div>
       <p>{cardDetails.title}</p>
-      <p>{cardDetails.userNum}</p>
+      <h2>{cardDetails.userNum}</h2>
     </div>
     )
   }

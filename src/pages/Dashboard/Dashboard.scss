@@ -11,6 +11,22 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
+
+      .dashboard_users {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        padding: 3rem 2rem 2rem 0;
+        h2 {
+          font-family: 'Work Sans';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 24px;
+          line-height: 28px;
+
+          color: #213F7D;
+        }
+      }
     }
   }
 }

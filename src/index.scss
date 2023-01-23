@@ -7,7 +7,7 @@
   src: url(./assets/fonts/AvenirNextLTPro-Bold.otf);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto&family=Work+Sans&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -41,3 +41,7 @@ a {
   color: unset;
   text-decoration: none;
 }
+
+// font-family: 'Inter', sans-serif;
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Work Sans', sans-serif;
