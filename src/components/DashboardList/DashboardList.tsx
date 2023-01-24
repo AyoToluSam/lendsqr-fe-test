@@ -4,9 +4,9 @@ import { dashboardData } from '../../constants'
 
 const DashboardList = () => {
 
-  const dashboardList = dashboardData.map( (list) => {
+  const dashboardList = dashboardData.map( (list, id) => {
     return (
-      <div className='dashboard_dropdown'>
+      <div key={id} className='dashboard_dropdown'>
         <div className={list.extraDiv ? "highlightWrapper" : ""} >
           {list.extraDiv && <div className='highlightBox' ><div className='highlightDarker'></div><div className='highlight'></div></div>} 
           <div key={list.id} className={list.className}>

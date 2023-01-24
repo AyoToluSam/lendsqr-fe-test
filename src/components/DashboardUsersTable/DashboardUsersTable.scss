@@ -1,4 +1,110 @@
 .dashboard_usersTable {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+
+  .tableHeadGroup {
+    
+    .tableHeadRow {
+      padding: 0.5rem 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1rem;
+  
+      .tableHeadCells {
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+        color: #545F7D;
+    
+        span {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: flex-end;
+          gap: 0.5rem;
+          
+          img {
+            max-width: 16px;
+            max-height: 11px;
+          }
+        }
+      }
+    }
+  }
+
+  .tableBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    .tableRow {
+      padding: 0.5rem 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1rem;
+
+      .tableCell {
+        display: inline-block;
+        text-align: left;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #545F7D;
+
+        img {
+          max-width: 4px;
+          max-height: 14.5px;
+        }
+      }
+    }
+  }
+
+  .column0 {
+    width: 120px;
+  }
+  .column1 {
+    width: 110px;
+  }
+  .column2 {
+    width: 150px;
+  }
+  .column3 {
+    width: 140px;
+  }
+  .column4 {
+    width: 120px;
+  }
+  .column5 {
+    width: 100px;
+  }
+  .column6 {
+    width: 10px;
+  }
+
+  .headerIcon6 {
+    display: none;
+  }
+
 
   .detailsBtn {
     position: relative;
