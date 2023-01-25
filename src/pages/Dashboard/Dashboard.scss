@@ -6,27 +6,37 @@
     justify-content: flex-start;
     align-items: flex-start;
 
-    .dashboard_display {
+    .dashboard_display_centering {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
+      justify-content: center;
+      align-items: center;
 
-      .dashboard_users {
+      .dashboard_display {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
-        padding: 3rem 2rem 2rem 0;
-        h2 {
-          font-family: 'Work Sans';
-          font-style: normal;
-          font-weight: 600;
-          font-size: 24px;
-          line-height: 28px;
-
-          color: #213F7D;
+        justify-content: flex-start;
+        align-items: flex-start;
+  
+        .dashboard_users {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          padding: 3rem 2rem 2rem 0;
+          h2 {
+            font-family: 'Work Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 28px;
+  
+            color: #213F7D;
+          }
         }
       }
     }
   }
 }
+
+// .displayNone {
+//   display: none;
+// }

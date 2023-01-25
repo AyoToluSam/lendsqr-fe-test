@@ -1,27 +1,46 @@
 import './DashboardTableNav.scss'
 import { icons } from '../../constants'
 
-const DashboardTableNav = () => {
+
+
+const DashboardTableNav = ({prev, next, canPrev, canNext, pageIndex, 
+  pageOptions, gotoPage, pageCount, pageSize, setPageSize, state} : any) => {
   return (
     <div className="dashboard_tableNav">
       <div className="tableNav_left">
-        <p>showing</p>
-        <select defaultValue={100} name="" id="">
+        <p>Showing</p>
+        <select value="10" name="pageSize" id=""
+          onChange={e => setPageSize(Number(e.target.value))} > 
           <option value="100">100</option>
           <option value="50">50</option>
+          <option value="20">20</option>
           <option value="10">10</option>
         </select>
-        <p>out of 100</p>
+        <span>out of {pageCount-1}</span>
       </div>
       <div className="tableNav_right">
-        <img src={icons.prev} alt="previous" />
-        <p>1</p>
-        <p>2</p>
-        <p>3</p>
+        <button onClick={()=>prev()} disabled={!canPrev} >
+          <img src={icons.prev} alt="previous" />
+        </button>
+        <p className="currentPage">{pageIndex+1}</p>
+        <p onClick={gotoPage(pageIndex+2)}>{pageIndex+2}</p>
+        <p onClick={gotoPage(pageIndex+3)}>{pageIndex+3}</p>
         <p>...</p>
-        <p>15</p>
-        <p>16</p>
-        <img src={icons.next} alt="next" />
+        <p 
+          onClick={gotoPage(pageIndex+15) ?? 
+          gotoPage((pageIndex+15 < pageCount-15) ? 
+          pageIndex+15 : pageCount-2)}>
+          { (pageIndex+15 < pageCount-15) ? pageIndex+15 : pageCount-2 }
+        </p>
+        <p 
+          onClick={gotoPage(pageIndex+16) ?? 
+          gotoPage((pageIndex+16 < pageCount-16) ? 
+          pageIndex+16 : pageCount-1)} >
+          { (pageIndex+16 < pageCount-16) ? pageIndex+16 : pageCount-1 }
+        </p>
+        <button onClick={()=>next()} disabled={!canNext} >
+          <img src={icons.next} alt="next" />
+        </button>
       </div>
     </div>
   )
