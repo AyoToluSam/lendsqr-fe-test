@@ -6,7 +6,8 @@ type dashboardDataTypes = {
   title: string,
   iconUrl2?: string,
   className: string,
-  extraDiv?: boolean
+  extraDiv?: boolean,
+  notDisplay?: boolean
 }
 
 const dashboardData: dashboardDataTypes[] = [
@@ -15,7 +16,7 @@ const dashboardData: dashboardDataTypes[] = [
    iconUrl: icons.briefcase,
    title: "Switch Organization",
    iconUrl2: icons.dropdownThin,
-   className: "dropdown_main"
+   className: "dropdown_main first"
   },
   {
     id: 1,
@@ -85,8 +86,8 @@ const dashboardData: dashboardDataTypes[] = [
   {
     id: 12,
     iconUrl: icons.briefcase,
-    title: "Organization paddingTop",
-    className: "dropdown_list"
+    title: "Organization",
+    className: "dropdown_list paddingTop"
   },
   {
     id: 13,
@@ -144,8 +145,8 @@ const dashboardData: dashboardDataTypes[] = [
   {
     id: 22,
     iconUrl: icons.sliders,
-    title: "Preferences paddingTop",
-    className: "dropdown_list"
+    title: "Preferences",
+    className: "dropdown_list paddingTop"
   },
   {
     id: 23,
@@ -163,18 +164,21 @@ const dashboardData: dashboardDataTypes[] = [
     id: 25,
     iconUrl: icons.tire,
     title: "Systems Messages",
-    className: "dropdown_list displayNone"
+    className: "dropdown_list displayNone",
+    notDisplay: true
   },
   {
     id: 26,
     iconUrl: icons.signOut,
     title: "Logout",
-    className: "dropdown_main displayNone"
+    className: "dropdown_main signOut displayNone",
+    notDisplay: true
   },
   {
     id: 27,
     title: "v1.2.0",
-    className: "dropdown_version displayNone"
+    className: "version displayNone",
+    notDisplay: true
   },
 ];
 

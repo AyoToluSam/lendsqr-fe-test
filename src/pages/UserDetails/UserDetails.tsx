@@ -8,7 +8,7 @@ const UsersDetails = () => {
     <div className='app_userDetails'>
       <DashboardNav />
       <div className='userDetails_body'>
-        <DashboardList />
+        <DashboardList display={true}/>
         <div className='userDetails_menu'>
           <div className='userDetails_menuHeader'>
             <div className='userDetails_title'>

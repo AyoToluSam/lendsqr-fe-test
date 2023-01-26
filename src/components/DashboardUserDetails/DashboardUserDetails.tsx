@@ -146,10 +146,10 @@ const DashboardUserDetails = () => {
       <div className='userDetails_header'>
         <div className='header_mainInfo'>
           <div className='user'>
-            <div><img src="" alt="" /></div>
+            <div className='user_img'><img src={parsedData.profile.avatar} alt="" /></div>
             <div className='user_name'>
               <h2>{parsedData.profile.firstName + " " + parsedData.profile.lastName}</h2>
-              <p>LSQFf587g90</p>
+              <p>{parsedData.userName}</p>
             </div>
           </div>
           <div className='user_tier'>
@@ -161,8 +161,8 @@ const DashboardUserDetails = () => {
             </div>
           </div>
           <div className='user_account'>
-            <h2>₦200,000.00</h2>
-            <p>9912345678/Providus Bank</p>
+            <h2>{"₦" + parsedData.accountBalance}</h2>
+            <p>{parsedData.accountNumber + "/" + parsedData.orgName}</p>
           </div>
         </div>
         <div className='info_headings'>

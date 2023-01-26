@@ -1,35 +1,55 @@
 .app_userDetails {
 
-  .dashboard_dropdown {
-    .displayNone {
-      display: flex;
-    }
-  }
-
   .userDetails_body {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 
     .userDetails_menu {
+      padding: 2rem 3rem 2rem 0;
       display: flex;
       flex-direction: column;      
 
       .userDetails_menuHeader {
         display: flex;
         flex-direction: row;
+        padding: 2rem 0 2.5rem 0;
 
         .userDetails_title {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
           align-items: flex-start;
+          gap: 2rem;
+
+          h2 {
+            font-family: 'Work Sans';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 28px;
+            color: #213F7D;
+          }
 
           .userDetails_backBtn {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
+            gap: 0.8rem;
+
+            img {
+              max-width: 27px;
+              max-height: 10px;
+            }
+            p {
+              font-family: 'Work Sans';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 19px;
+              color: #545F7D;
+            }
           }
         }
 
@@ -40,8 +60,62 @@
           flex-direction: row;
           justify-content: flex-end;
           align-items: flex-end;
+          gap: 1rem;
+
+          button:first-child {
+            font-family: 'Work Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 16px;
+            text-align: center;
+            letter-spacing: 0.1em;
+            color: #E4033B;            
+            background-color: #FFF;
+            border: 1px solid #E4033B;
+            border-radius: 8px;
+            padding: 0.5rem 0.8rem;
+          }
+          button:nth-child(2) {
+            font-family: 'Work Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 16px;
+            text-align: center;
+            letter-spacing: 0.1em;
+            color: #39CDCC;            
+            background-color: #FFF;
+            border: 1px solid #39CDCC;
+            border-radius: 8px;
+            padding: 0.5rem 0.8rem;
+          }
         }
       }
     }
+  }
+}
+
+.dashboard_dropdown {
+  .displayNone {
+    display: flex;
+  }
+
+  .dropdown_main {
+    .signOut {
+      margin-top: 1rem;
+      border-top: 1px solid rgba(33, 63, 125, 0.1);
+      font-size: 16px;
+    }
+  }
+
+  .version {
+    margin: 1rem 0 0 0.6rem;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #213F7D;    
   }
 }

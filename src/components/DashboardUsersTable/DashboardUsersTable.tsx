@@ -1,34 +1,42 @@
 import './DashboardUsersTable.scss'
 import { useMemo, useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { useTable, usePagination } from 'react-table';
+import { useTable, useFilters, usePagination } from 'react-table';
 import { icons } from '../../constants';
 import DashboardTableNav from '../DashboardTableNav/DashboardTableNav';
 
 
 const DashboardUsersTable = ({tableData}: any) => {
 
-  const Filter = () => {
+  const [userID, setUserID] = useState<any>();
+  const [userDetails, setUserDetails] = useState<any>();
+  const [open, setOpen] = useState(false)
 
+  const listRef = useRef<any>([]);
+  const filterRef = useRef<any>();
+
+  const Filter = () => {
     return (
-      <div className='dashboard_fliter'>
+      <div ref={filterRef} className={open ? 'dashboard_fliter' : 'displayNone'}>
         <div className='filter_options'>
           <label className='filter_label' htmlFor="organization">Organization</label>
-          <select className='filter_select' name="organization" placeholder='Select' id=""></select>
+          <select defaultValue="Select" className='filter_select' name="organization" id="">
+            <option value="Select" disabled>Select</option>
+          </select>
         </div>
         <div className='filter_options'>
           <label className='filter_label' htmlFor="username">Username</label>
-          <input className='filter_select' name='username' placeholder='user' type="text" />
+          <input className='filter_select' name='username' placeholder='User' type="text" />
         </div>
         <div className='filter_options'>
           <label className='filter_label' htmlFor="email" >Email</label>
-          <input className='filter_select' name='email' placeholder='email' type="text" />
+          <input className='filter_select' name='email' placeholder='Email' type="text" />
         </div>
         <div className='filter_options'>
           <label className='filter_label' htmlFor="date">Date</label>
-          <div>
-          <input className='filter_select' name='date' placeholder='date' type="text" />
-          <img src={icons.calendar} alt="calendar" />
+          <div className='icon_container'>
+          <input className='filter_select' name='date' placeholder='Date' type="text" />
+          <img className='calendar' src={icons.calendar} alt="calendar" />
           </div>
         </div>
         <div className='filter_options'>
@@ -37,7 +45,9 @@ const DashboardUsersTable = ({tableData}: any) => {
         </div>
         <div className='filter_options'>
           <label className='filter_label' htmlFor="status">Status</label>
-          <select className='filter_select' name="status" placeholder='Select' id=""></select>
+          <select defaultValue="Select" className='filter_select' name="status" id="">
+            <option value="Select" disabled>Select</option>
+          </select>
         </div>
         <div className='filter_buttons'>
           <button className='btn1'>Reset</button>
@@ -47,12 +57,23 @@ const DashboardUsersTable = ({tableData}: any) => {
     )
   }
 
-  const listRef = useRef<any>([]);
+  useEffect(() => {
 
-  const [userID, setUserID] = useState<any>();
-  const [userDetails, setUserDetails] = useState<any>();
+    let handler = (e: any) => {
+      if (!filterRef.current.contains(e.target)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handler)
 
-  const handleClick = (event: any, row: any) => {
+    return() => {
+      document.removeEventListener("mousedown", handler)
+    }
+
+  }, [])
+  
+
+  const handleDetails = (row: any) => {
 
     const clicked = listRef.current[row.id]
     clicked.className = "viewDetails";
@@ -65,12 +86,17 @@ const DashboardUsersTable = ({tableData}: any) => {
   useEffect(() => {
     window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
     
-    document.addEventListener("mousedown", () => {
-      const clicked = listRef.current[userID]
-      if (clicked != undefined || null) {
+    const clicked = listRef.current[userID]
+    const clickHandler = (e: any) => {
+      if ((clicked != undefined || null) && (!clicked.contains(e.target))) {
         clicked.className = "displayNone";
       }
-    })
+    }
+    document.addEventListener("mousedown", clickHandler)
+
+    return() => {
+      document.removeEventListener("mousedown", clickHandler)
+    }
 
   }, [userID])
   
@@ -107,7 +133,7 @@ const DashboardUsersTable = ({tableData}: any) => {
       {
         id: "details",
         Cell: ({row}: any) => (
-          <div onClick={(event) => handleClick(event, row)} className='detailsBtn'>
+          <div onClick={(e) => handleDetails(row)} className='detailsBtn'>
             <img src={icons.details} alt="details" />
             <div ref={ (node) => {listRef.current[row.id] = node}} className={"displayNone " + "row" + row.id}>
               <Link className="actions" to="/user-details" ><img src={icons.eye} alt="eye" /><p>View Details</p></Link>
@@ -131,6 +157,7 @@ const DashboardUsersTable = ({tableData}: any) => {
     getTableBodyProps,
     headerGroups,
     page,
+    rows,
     nextPage,
     previousPage,
     canPreviousPage,
@@ -156,7 +183,7 @@ const DashboardUsersTable = ({tableData}: any) => {
               {headerGroup.headers.map( (column, index) => (
                 <th className={'tableHeadCells ' + "column" + index} {...column.getHeaderProps()}>
                   <span>{column.render('Header')} 
-                    <img className={"headerIcon" + index} src={icons.filter} alt="filter" />
+                    <img onClick={() => setOpen(!open)} className={"headerIcon" + index} src={icons.filter} alt="filter" />
                   </span>
                 </th>
               ))}
@@ -170,8 +197,9 @@ const DashboardUsersTable = ({tableData}: any) => {
             return (
               <tr className='tableRow' {...row.getRowProps()} >
                 {row.cells.map((cell, index) => {
+
                   return (
-                    <td className={'tableCell ' + "column" + index } {...cell.getCellProps()}>
+                    <td className={ "column" + index + ' tableCell ' + ( index = 5 ? cell.value : "")} {...cell.getCellProps()}>
                       <span>{cell.render('Cell')}</span>
                     </td>
                   )
@@ -192,7 +220,7 @@ const DashboardUsersTable = ({tableData}: any) => {
         pageCount={pageCount}
         pageSize={pageSize}
         setPageSize={setPageSize}
-        state={state}
+        rows={rows}
         />
       </div>
     </div>

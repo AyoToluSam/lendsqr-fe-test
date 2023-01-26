@@ -15,7 +15,7 @@ const DashboardNav = () => {
       </Link>
       <div className='nav_searchBar'> 
         <input type="text" name='search' placeholder='Search for anything'/>
-        <label htmlFor="search"><img src={icons.search} alt="search" /></label>
+        <span><img src={icons.search} alt="search" /></span>
       </div>
       <div className='nav_links'>
         <p>Docs</p>

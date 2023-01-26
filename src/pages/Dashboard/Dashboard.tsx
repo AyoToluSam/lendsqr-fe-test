@@ -4,31 +4,31 @@ import axios from 'axios';
 import { useState, useMemo, useEffect } from 'react';
 import { DashboardCardList, DashboardList, DashboardNav, DashboardTableNav, DashboardUsersTable } from '../../components'
 import { Link } from 'react-router-dom';
-// import { apiData } from '../../constants/apiData';
+import { apiData } from '../../constants/apiData';
 
 const Dashboard = () => {
   
-  const [usersData, setUsersData] = useState<any>([]);
+  // const [usersData, setUsersData] = useState<any>([]);
 
-  const fetchUsersData = async () => {
+  // const fetchUsersData = async () => {
 
-    const url = "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users"
+  //   const url = "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users"
 
-    const response = await axios.get(url).catch(err => console.log(err));
+  //   const response = await axios.get(url).catch(err => console.log(err));
 
-    if (response) {
-      console.log(response.data);
-      setUsersData(response.data);
-    }
-  }
+  //   if (response) {
+  //     console.log(response.data);
+  //     setUsersData(response.data);
+  //   }
+  // }
 
-  useEffect(() => {
-    fetchUsersData();
-  }, [])
+  // useEffect(() => {
+  //   fetchUsersData();
+  // }, [])
 
   const statusArray = ["Inactive", "Pending", "Blacklisted", "Active"];
   
-  const formattedData = usersData.map( (each: any) => {
+  const formattedData = apiData.map( (each: any) => {
     const date =  moment(each.createdAt).format('MMMM Do YYYY, h:mm a');
     const returnData = { ...each, ...{createdAt: date, status: statusArray[Math.floor(Math.random()*4)]}}
     return returnData
@@ -42,12 +42,12 @@ const Dashboard = () => {
     <div className='app_dashboard'>
       <DashboardNav/>
       <div className="dashboard_menu">
-        <DashboardList/>
+        <DashboardList display={false}/>
         <div className='dashboard_display_centering'>
           <div className="dashboard_display">
             <div className="dashboard_users">
               <Link to="/user-details" ><h2>Users</h2></Link>
-              <DashboardCardList/>
+              <DashboardCardList data={tableData} />
               <DashboardUsersTable tableData={tableData} />
             </div>
           </div>

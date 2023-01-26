@@ -1,15 +1,16 @@
 .dashboard_nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: 2rem 3rem 2rem 1rem;
   box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04);
 
   .nav_logo {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.5rem;
+    min-width: 260px;
+    margin-right: 3rem;
 
     .logo1 {
       position: relative;
@@ -25,29 +26,35 @@
   }
 
   .nav_searchBar {
-    border: 1px solid #213F7D;
-    border-radius: 8px;
-    width: fit-content;
-    max-height: 40px;
+    position: relative;
+    display: flex;
 
     input {
-      max-width: 400px;
-      max-height: 40px;
+      width: 400px;
+      height: 40px;
       padding: 1rem;
-      background: #FFFFFF;
-      opacity: 0.2;
-      border: none;
+      color: #545F7D;
+      opacity: 0.7;
+      border: 1px solid rgba(33, 63, 125, 0.2);
+      border-radius: 8px;  
     }
 
-    label {
-      max-height: 100%;
-      background: #39CDCC;
-      padding: 1rem;
-      img {
-        max-width: 14px;
-        height: 14px;
+      span {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #39CDCC;
+        padding: 13px 21px;
+        right: 0;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+
+        img {
+          max-width: 15px;
+          max-height: 15px;
+        }
       }
-    }
   }
 
   .nav_links {
@@ -56,6 +63,7 @@
     justify-content: space-evenly;
     gap: 2rem;
     align-items: center;
+    margin-left: auto;
 
     & > p {
       font-family: 'Roboto';
