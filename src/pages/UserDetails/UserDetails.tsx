@@ -1,4 +1,3 @@
-import './UserDetails.scss'
 import { DashboardNav, DashboardList, DashboardUserDetails } from '../../components'
 import { icons } from '../../constants'
 

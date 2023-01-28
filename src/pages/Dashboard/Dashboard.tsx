@@ -1,4 +1,3 @@
-import './Dashboard.scss'
 import moment from 'moment';
 import axios from 'axios';
 import { useState, useMemo, useEffect } from 'react';

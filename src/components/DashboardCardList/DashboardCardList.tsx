@@ -1,4 +1,3 @@
-import './DashboardCardList.scss'
 import { icons } from '../../constants'
 
 

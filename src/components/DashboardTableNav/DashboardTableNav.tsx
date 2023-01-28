@@ -1,4 +1,3 @@
-import './_DashboardTableNav.scss'
 import { icons } from '../../constants'
 
 

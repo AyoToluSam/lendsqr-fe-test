@@ -1,4 +1,3 @@
-import './DashboardNav.scss' 
 import union from '../../assets/images/union.png'
 import lendsqr from '../../assets/images/lendsqr.png'
 import profileImg from '../../assets/images/profile-img.png'

@@ -1,3 +1,4 @@
+
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -63,3 +64,14 @@ $box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
   justify-content: center;
   align-items: center;
 }
+
+
+  @import './pages/Login/Login';
+  @import './pages/Dashboard/Dashboard';
+  @import './pages/UserDetails/UserDetails';
+  @import './components/DashboardCardList/DashboardCardList';
+  @import './components/DashboardList/DashboardList';
+  @import './components/DashboardNav/DashboardNav';
+  @import './components/DashboardTableNav/DashboardTableNav';
+  @import './components/DashboardUserDetails/DashboardUserDetails';
+  @import './components/DashboardUsersTable/DashboardUsersTable';

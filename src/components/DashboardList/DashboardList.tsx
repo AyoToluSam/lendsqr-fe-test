@@ -1,4 +1,3 @@
-import './DashboardList.scss'
 import { dashboardData } from '../../constants'
 
 

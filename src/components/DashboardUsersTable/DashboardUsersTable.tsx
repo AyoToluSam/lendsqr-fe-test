@@ -1,4 +1,3 @@
-import './DashboardUsersTable.scss'
 import { useMemo, useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { useTable, useFilters, usePagination } from 'react-table';

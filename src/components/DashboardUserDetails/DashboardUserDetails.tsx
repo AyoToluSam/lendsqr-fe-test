@@ -1,4 +1,3 @@
-import './DashboardUserDetails.scss'
 import { icons } from '../../constants'
 
 const DashboardUserDetails = () => {
