@@ -1,3 +1,5 @@
+@import "../../App.scss";
+
 .dashboard_container {
   position: relative;
   min-width: 260px;
@@ -21,24 +23,24 @@
     column-gap: 0.5rem;
     padding: 0.5rem 0.5rem 0.5rem 0;
     margin: 1rem 0 0 0.4rem;
-    font-family: 'Work Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-    color: #213F7D;
+    @include p-tag-1();
 
     & > img {
       max-width: 16px;
       max-height: 16px;
     }
+    .dropIcon {
+      max-width: 12px;
+      max-height: 14px;
+    }
     &.signOut {
       border-top: 1px solid rgba(33, 63, 125, 0.1);
       font-size: 16px;
-      margin-top: 1rem;
+      margin-top: 4rem;
+      padding: 2rem 0 1rem 0;
     }
   }
-
+  
   .dropdown_list {
     position: relative;
     display: flex;
@@ -48,7 +50,7 @@
     opacity: 0.60;
     
     & > p {
-      font-family: 'Work Sans';
+      font-family: $Work-sans;
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
@@ -71,12 +73,12 @@
   }
 
   .dropdown_heading {
-    font-family: 'Work Sans';
+    font-family: $Work-sans;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 14px;
-    color: #545F7D;
+    color: $light-blue;
     margin: 2rem 0.4rem 0;
     opacity: 0.9;
   }
@@ -106,7 +108,7 @@
   top: 0.4rem;
   width: 0.2rem;
   height: 100%;
-  background: #39CDCC;
+  background: $green;
 }
 .highlight {
   position: absolute;

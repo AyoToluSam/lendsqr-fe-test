@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import './DashboardUserDetails.scss'
 import { icons } from '../../constants'
 

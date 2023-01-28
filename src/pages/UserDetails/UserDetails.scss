@@ -1,4 +1,7 @@
+@import "../../App.scss";
+
 .app_userDetails {
+  @include inner-containers();
 
   .userDetails_body {
     display: flex;

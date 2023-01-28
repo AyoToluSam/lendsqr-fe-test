@@ -20,9 +20,11 @@ const DashboardUsersTable = ({tableData}: any) => {
       <div ref={filterRef} className={open ? 'dashboard_fliter' : 'displayNone'}>
         <div className='filter_options'>
           <label className='filter_label' htmlFor="organization">Organization</label>
-          <select defaultValue="Select" className='filter_select' name="organization" id="">
+          <div className='select_wrapper'>
+            <select defaultValue="Select" className='filter_select' name="organization" id="">
             <option value="Select" disabled>Select</option>
-          </select>
+            </select>
+          </div>
         </div>
         <div className='filter_options'>
           <label className='filter_label' htmlFor="username">Username</label>
@@ -45,9 +47,11 @@ const DashboardUsersTable = ({tableData}: any) => {
         </div>
         <div className='filter_options'>
           <label className='filter_label' htmlFor="status">Status</label>
-          <select defaultValue="Select" className='filter_select' name="status" id="">
+          <div className='select_wrapper'>
+            <select defaultValue="Select" className='filter_select' name="status" id="">
             <option value="Select" disabled>Select</option>
-          </select>
+            </select>
+          </div>
         </div>
         <div className='filter_buttons'>
           <button className='btn1'>Reset</button>

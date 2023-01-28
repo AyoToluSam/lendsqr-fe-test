@@ -40,6 +40,7 @@ import eye from '../assets/icons/eye.png'
 import activeUser from '../assets/icons/active-user.png'
 import blacklist from '../assets/icons/blacklist.png'
 import dropdownThin from '../assets/icons/dropdown-thin.png'
+import select from '../assets/icons/select.png'
 
 
 
@@ -85,5 +86,6 @@ export default {
   eye,
   activeUser,
   blacklist,
-  dropdownThin
+  dropdownThin,
+  select
 }

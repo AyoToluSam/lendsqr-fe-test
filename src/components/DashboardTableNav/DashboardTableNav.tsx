@@ -1,4 +1,4 @@
-import './DashboardTableNav.scss'
+import './_DashboardTableNav.scss'
 import { icons } from '../../constants'
 
 
@@ -9,28 +9,30 @@ const DashboardTableNav = ({prev, next, canPrev, canNext, pageIndex,
     <div className="dashboard_tableNav">
       <div className="tableNav_left">
         <p>Showing</p>
-        <select defaultValue={pageSize} name="pageSize" id=""> 
+        <div className='select_wrapper'>
+          <select defaultValue={pageSize} name="pageSize" id=""> 
           <option value="100" onClick={e => setPageSize(Number((e.target as HTMLOptionElement).value))}>100</option>
           <option value="50" onClick={e => setPageSize(Number((e.target as HTMLOptionElement).value))}>50</option>
           <option value="20" onClick={e => setPageSize(Number((e.target as HTMLOptionElement).value))}>20</option>
           <option value="10" onClick={e => setPageSize(Number((e.target as HTMLOptionElement).value))}>10</option>
-        </select>
+          </select>
+        </div>
         <span>out of {rows.length}</span>
       </div>
       <div className="tableNav_right">
         <button onClick={()=>prev()} disabled={!canPrev} >
           <img src={icons.prev} alt="previous" />
         </button>
-        <p className="currentPage">{(pageIndex+1 < pageCount-3) ? pageIndex+1 : pageCount-4}</p>
-        <p className='pages' onClick={ () => gotoPage(pageIndex+2)}>{(pageIndex+2 < pageCount-2) ? pageIndex+2 : pageCount-3}</p>
-        <p className='pages' onClick={ () => gotoPage(pageIndex+3)}>{ (pageIndex+3 < pageCount-1) ? pageIndex+3 : pageCount-2}</p>
-        <p className='pages'>...</p>
-        <p className='pages' onClick={ () => gotoPage(pageCount-1)}>
+        <button className="currentPage">{(pageIndex+1 < pageCount-3) ? pageIndex+1 : pageCount-4}</button>
+        <button className='pages' onClick={ () => gotoPage(pageIndex+2)}>{(pageIndex+2 < pageCount-2) ? pageIndex+2 : pageCount-3}</button>
+        <button className='pages' onClick={ () => gotoPage(pageIndex+3)}>{ (pageIndex+3 < pageCount-1) ? pageIndex+3 : pageCount-2}</button>
+        <button className='pages'>...</button>
+        <button className='pages' onClick={ () => gotoPage(pageCount-1)}>
           {pageCount-1}
-        </p>
-        <p className='pages' onClick={ () => gotoPage(pageCount)}>
+        </button>
+        <button className='pages' onClick={ () => gotoPage(pageCount)}>
           {pageCount}
-        </p>
+        </button>
         <button onClick={()=>next()} disabled={!canNext} >
           <img src={icons.next} alt="next" />
         </button>

@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import UsersDetails from './pages/UserDetails/UserDetails';
-import { DashboardNav, DashboardList } from './components';
 
 const App = () => {
   return (

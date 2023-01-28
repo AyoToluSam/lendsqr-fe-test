@@ -1,0 +1,65 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+$Avenir-regular: 'Avenir Next', sans-serif;
+$Avenir-bold: 'Avenir Next Bold',sans-serif;
+$SF : 'SF Compact', sans-serif;
+$Roboto: 'Roboto', sans-serif;
+$Work-sans: 'Work Sans', sans-serif;
+
+$blue: rgba(33, 63, 125, 1);
+$light-blue: rgba(84, 95, 125, 1);
+$green: rgba(57, 205, 204, 1);
+$red: rgba(228, 3, 59, 1);
+$yellow: rgba(233, 178, 0, 1);
+$border: 1px solid rgba(33, 63, 125, 0.06);
+$box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+
+
+@mixin inner-containers() {
+  border: $border;
+  box-shadow: $box-shadow;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin btn() {
+  background: #FFF;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+@mixin p-tag() {
+  font-family: $Work-sans;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: $light-blue;
+}
+
+@mixin p-tag-1() {
+  font-family: $Work-sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: $blue;
+}
+@mixin h2-tag() {
+  font-family: $Work-sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+  color: $blue;
+}
+
+@mixin justify-align() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
