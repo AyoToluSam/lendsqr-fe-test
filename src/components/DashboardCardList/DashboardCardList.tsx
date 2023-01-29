@@ -18,6 +18,9 @@ type CardProps = {
   }
 }
 
+//Mapping through an array of onjects to dynamically generate the stats
+//cards on the dashboard.
+
 const DashboardCardList = ({data} : any) => {
   
   const Card = ({cardDetails}: CardProps) => {

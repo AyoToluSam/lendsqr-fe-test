@@ -1,4 +1,3 @@
-
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -28,9 +27,16 @@ $box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
 }
 
 @mixin btn() {
-  background: #FFF;
-  border-radius: 8px;
+  font-family: $Work-sans;
+  font-style: normal;
   font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  background-color: #FFF;
 }
 
 @mixin p-tag() {
@@ -66,12 +72,12 @@ $box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
 }
 
 
-  @import './pages/Login/Login';
-  @import './pages/Dashboard/Dashboard';
-  @import './pages/UserDetails/UserDetails';
-  @import './components/DashboardCardList/DashboardCardList';
-  @import './components/DashboardList/DashboardList';
-  @import './components/DashboardNav/DashboardNav';
-  @import './components/DashboardTableNav/DashboardTableNav';
-  @import './components/DashboardUserDetails/DashboardUserDetails';
-  @import './components/DashboardUsersTable/DashboardUsersTable';
+  @import './pages/Login/Login', 
+  './pages/Dashboard/Dashboard',
+   './pages/UserDetails/UserDetails',
+   './components/DashboardCardList/DashboardCardList',
+   './components/DashboardList/DashboardList',
+   './components/DashboardNav/DashboardNav',
+   './components/DashboardTableNav/DashboardTableNav',
+   './components/DashboardUserDetails/DashboardUserDetails',
+   './components/DashboardUsersTable/DashboardUsersTable';

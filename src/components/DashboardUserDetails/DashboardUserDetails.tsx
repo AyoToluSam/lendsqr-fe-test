@@ -2,11 +2,18 @@ import { icons } from '../../constants'
 
 const DashboardUserDetails = () => {
 
+  //Getting the data sent over from the dashboard page
+
   const userDetails: any = window.localStorage.getItem("userDetails");
   console.log(userDetails)
 
+  //Parsing the data
+
   const parsedData: any = JSON.parse(userDetails)
   console.log("parsedData: ", parsedData)
+
+  //An object containing arrays, to dynamically generate the user
+  //information cards.
 
   let userDetailsObj: any = {
       "Personal Information" : [
@@ -108,6 +115,8 @@ const DashboardUserDetails = () => {
     };
 
 
+  // Each card component
+
   const Card = ({cardTitle, cardContent}: any) => {
     return (
       <div className='cards'>
@@ -116,6 +125,8 @@ const DashboardUserDetails = () => {
       </div>
     )
   }
+
+// Generating the information sections and placing the cards accordingly.
 
   const sectionTitles = Object.keys(userDetailsObj);
 

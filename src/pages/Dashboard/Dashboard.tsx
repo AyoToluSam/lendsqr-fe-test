@@ -2,11 +2,13 @@ import moment from 'moment';
 import axios from 'axios';
 import { useState, useMemo, useEffect } from 'react';
 import { DashboardCardList, DashboardList, DashboardNav, DashboardUsersTable } from '../../components'
-import { Link } from 'react-router-dom';
+
 
 const Dashboard = () => {
   
   const [usersData, setUsersData] = useState<any>([]);
+
+  //Fetching data from API at saving it into the above state
 
   const fetchUsersData = async () => {
 
@@ -24,6 +26,10 @@ const Dashboard = () => {
     fetchUsersData();
   }, [])
 
+  //Declaring the possible statuses and generating random status
+  //for users.
+  //Also formatting the dates in the same array loop
+
   const statusArray = ["Inactive", "Pending", "Blacklisted", "Active"];
   
   const formattedData = usersData.map( (each: any) => {
@@ -31,9 +37,7 @@ const Dashboard = () => {
     const returnData = { ...each, ...{createdAt: date, status: statusArray[Math.floor(Math.random()*4)]}}
     return returnData
   })
-  
-  window.localStorage.setItem("defaultUser", JSON.stringify([formattedData[0]]));
-
+    
   const tableData = useMemo(() => [...formattedData], [formattedData])
 
   return (

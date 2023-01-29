@@ -6,6 +6,14 @@
   gap: 2rem;
   align-items: center;
 
+  @media screen and (max-width: 1240px) {
+    flex-wrap: wrap;
+    & > * {
+      flex: 50%;
+    }
+    justify-content: center;
+  }
+
   .dashboard_cards {
     flex: 1;
     display: flex;
@@ -18,6 +26,11 @@
     border: $border;
     box-shadow: $box-shadow;
     border-radius: 4px;
+    @media screen and (max-width: 1240px) {
+      min-width: 120px;
+      align-items: center;
+      text-align: center;
+    }
 
     p {
       font-family: $Work-sans;

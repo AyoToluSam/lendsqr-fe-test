@@ -1,6 +1,6 @@
 import { useMemo, useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { useTable, useFilters, usePagination } from 'react-table';
+import { useTable, usePagination } from 'react-table';
 import { icons } from '../../constants';
 import DashboardTableNav from '../DashboardTableNav/DashboardTableNav';
 
@@ -10,6 +10,10 @@ const DashboardUsersTable = ({tableData}: any) => {
   const [userID, setUserID] = useState<any>();
   const [userDetails, setUserDetails] = useState<any>();
   const [open, setOpen] = useState(false)
+
+  //ListRef targets column 6 of the table. It is to assign a ref to each 
+  //icon, so as to target the clicked one to open the details.
+  //FilterRef handles the filter pop up when the table head icons are clicked
 
   const listRef = useRef<any>([]);
   const filterRef = useRef<any>();
@@ -60,21 +64,8 @@ const DashboardUsersTable = ({tableData}: any) => {
     )
   }
 
-  useEffect(() => {
-
-    let handler = (e: any) => {
-      if (!filterRef.current.contains(e.target)) {
-        setOpen(false)
-      }
-    }
-    document.addEventListener("mousedown", handler)
-
-    return() => {
-      document.removeEventListener("mousedown", handler)
-    }
-
-  }, [])
-  
+  //Handler for the viewDetails pop up. It updates the userDetails if
+  //any row is clicked, using the information of that row.
 
   const handleDetails = (row: any) => {
 
@@ -85,6 +76,10 @@ const DashboardUsersTable = ({tableData}: any) => {
 
     setUserDetails(row.original)
   }
+
+  //Sending the most up to date userDetails to the users page and also
+  //using effect to handle the closing of the pop up if user clicks 
+  //outside of it.
 
   useEffect(() => {
     window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
@@ -102,6 +97,8 @@ const DashboardUsersTable = ({tableData}: any) => {
     }
 
   }, [userID])
+
+  //Memoizing the data sent to the table.
   
   const tableColumns = useMemo(() => [
     {
@@ -129,6 +126,8 @@ const DashboardUsersTable = ({tableData}: any) => {
       accessor: "status"
     },
   ], []);
+
+  //Adding the viewDetails column to the table
 
   const tableHooks = (hooks: any) => {
     hooks.visibleColumns.push( (columns: any) => [
@@ -200,9 +199,9 @@ const DashboardUsersTable = ({tableData}: any) => {
             return (
               <tr className='tableRow' {...row.getRowProps()} >
                 {row.cells.map((cell, index) => {
-
+                  const headers = ["ORGANIZATION", "USERNAME", "EMAIL", "PHONE NUMBER", "DATE JOINED", "STATUS" ]
                   return (
-                    <td className={ "column" + index + ' tableCell ' + ( index = 5 ? cell.value : "")} {...cell.getCellProps()}>
+                    <td data-label={(headers[index] != undefined) ? headers[index] : null} className={ "column" + index + ' tableCell ' + ( index = 5 ? cell.value : "")} {...cell.getCellProps()}>
                       <span>{cell.render('Cell')}</span>
                     </td>
                   )
@@ -212,6 +211,7 @@ const DashboardUsersTable = ({tableData}: any) => {
           })}
         </tbody>
         </table>
+        {/*Sending the following props to the table navigation component.*/}
         <DashboardTableNav 
         prev={previousPage} 
         next={nextPage} 

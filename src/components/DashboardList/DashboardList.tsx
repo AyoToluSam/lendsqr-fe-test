@@ -3,6 +3,9 @@ import { dashboardData } from '../../constants'
 
 const DashboardList = ({display} : any) => {
 
+  //Looping through a predefined array of objects to generate
+  //the side bar menu list.
+
   const dashboardList = dashboardData.map( (list, id) => {
     if (list.notDisplay) {
       if (!display) {

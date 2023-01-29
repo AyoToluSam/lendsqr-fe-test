@@ -164,20 +164,20 @@ const dashboardData: dashboardDataTypes[] = [
     id: 25,
     iconUrl: icons.tire,
     title: "Systems Messages",
-    className: "dropdown_list displayNone",
+    className: "dropdown_list",
     notDisplay: true
   },
   {
     id: 26,
     iconUrl: icons.signOut,
     title: "Logout",
-    className: "dropdown_main signOut displayNone",
+    className: "dropdown_main signOut",
     notDisplay: true
   },
   {
     id: 27,
     title: "v1.2.0",
-    className: "version displayNone",
+    className: "version",
     notDisplay: true
   },
 ];

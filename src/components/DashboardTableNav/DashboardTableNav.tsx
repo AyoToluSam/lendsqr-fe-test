@@ -1,7 +1,6 @@
 import { icons } from '../../constants'
 
 
-
 const DashboardTableNav = ({prev, next, canPrev, canNext, pageIndex, 
   pageOptions, gotoPage, pageCount, pageSize, setPageSize, rows} : any) => {
   return (

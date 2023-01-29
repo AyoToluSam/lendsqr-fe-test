@@ -1,4 +1,3 @@
-
 .app_dashboard {
   @include inner-containers();
 
@@ -7,6 +6,11 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+
+    @media screen and (max-width: 1240px) {
+      padding: 1rem;
+      @include justify-align();
+    }
 
     .dashboard_display_centering {
       @include justify-align();
@@ -24,6 +28,9 @@
           padding: 3rem 2rem 2rem 0;
           h2 {
             @include h2-tag();
+          }
+          @media screen and (max-width: 1240px) {
+            padding: 0 1rem;
           }
         }
       }
