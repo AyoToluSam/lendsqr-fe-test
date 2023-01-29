@@ -199,9 +199,8 @@ const DashboardUsersTable = ({tableData}: any) => {
             return (
               <tr className='tableRow' {...row.getRowProps()} >
                 {row.cells.map((cell, index) => {
-                  const headers = ["ORGANIZATION", "USERNAME", "EMAIL", "PHONE NUMBER", "DATE JOINED", "STATUS" ]
                   return (
-                    <td data-label={(headers[index] != undefined) ? headers[index] : null} className={ "column" + index + ' tableCell ' + ( index = 5 ? cell.value : "")} {...cell.getCellProps()}>
+                    <td className={ "column" + index + ' tableCell ' + ( index = 5 ? cell.value : "")} {...cell.getCellProps()}>
                       <span>{cell.render('Cell')}</span>
                     </td>
                   )
