@@ -1,6 +1,6 @@
 import icons from "./icons";
 import cardData from "./cardData";
 import dashboardData from "./dashboardData";
-import userDetailsArray from "./userDetailsData";
+import userDetailsObj from "./userDetailsObj";
 
-export { icons, dashboardData, cardData, userDetailsArray }
+export { icons, dashboardData, cardData, userDetailsObj }
