@@ -1,7 +1,10 @@
 import { dashboardData } from '../../constants'
 
+type DashboardListProps = {
+  display: boolean
+}
 
-const DashboardList = ({display} : any) => {
+const DashboardList = ({display} : DashboardListProps) => {
 
   //Looping through a predefined array of objects to generate
   //the side bar menu list.

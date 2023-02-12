@@ -2,11 +2,12 @@ import moment from 'moment';
 import axios from 'axios';
 import { useState, useMemo, useEffect } from 'react';
 import { DashboardCardList, DashboardList, DashboardNav, DashboardUsersTable } from '../../components'
+import { Iuser } from '../../constants/types';
 
 
 const Dashboard = () => {
   
-  const [usersData, setUsersData] = useState<any>([]);
+  const [usersData, setUsersData] = useState<Iuser[]>([]);
 
   //Fetching data from API at saving it into the above state
 
@@ -32,7 +33,7 @@ const Dashboard = () => {
 
   const statusArray = ["Inactive", "Pending", "Blacklisted", "Active"];
   
-  const formattedData = usersData.map( (each: any) => {
+  const formattedData = usersData.map( (each) => {
     const date =  moment(each.createdAt).format('MMMM Do YYYY, h:mm a');
     const returnData = { ...each, ...{createdAt: date, status: statusArray[Math.floor(Math.random()*4)]}}
     return returnData

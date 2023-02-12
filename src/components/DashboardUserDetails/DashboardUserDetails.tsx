@@ -1,16 +1,19 @@
 import { icons } from '../../constants'
+import { Iuser } from '../../constants/types';
+
+
+//Getting the data sent over from the dashboard page
+
+const userDetails = window.localStorage.getItem("userDetails");
+console.log(userDetails)
+
+//Parsing the data
+
+export const parsedData = JSON.parse(userDetails || "")
+console.log("parsedData: ", parsedData)
 
 const DashboardUserDetails = () => {
 
-  //Getting the data sent over from the dashboard page
-
-  const userDetails: any = window.localStorage.getItem("userDetails");
-  console.log(userDetails)
-
-  //Parsing the data
-
-  const parsedData: any = JSON.parse(userDetails)
-  console.log("parsedData: ", parsedData)
 
   //An object containing arrays, to dynamically generate the user
   //information cards.

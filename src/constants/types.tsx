@@ -42,6 +42,7 @@ export interface Iuser {
   accountNumber: string,
   socials: Isocials,
   education: Ieducation,
-  id: number
+  id: number,
+  status?: string
 }
 

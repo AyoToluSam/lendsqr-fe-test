@@ -1,15 +1,19 @@
 import { useMemo, useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { useTable, usePagination } from 'react-table';
+import { useTable, usePagination, Column } from 'react-table';
 import { icons } from '../../constants';
 import DashboardTableNav from '../DashboardTableNav/DashboardTableNav';
+import { Iuser } from '../../constants/types';
 
+type DashboardUsersTableProps = {
+  tableData: Iuser[]
+}
 
-const DashboardUsersTable = ({tableData}: any) => {
+const DashboardUsersTable = ({tableData}: DashboardUsersTableProps) => {
 
-  const [userID, setUserID] = useState<any>();
-  const [userDetails, setUserDetails] = useState<any>();
-  const [open, setOpen] = useState(false)
+  const [userID, setUserID] = useState<number>(1);
+  const [userDetails, setUserDetails] = useState<Iuser>();
+  const [open, setOpen] = useState(false);
 
   //ListRef targets column 6 of the table. It is to assign a ref to each 
   //icon, so as to target the clicked one to open the details.
@@ -85,7 +89,7 @@ const DashboardUsersTable = ({tableData}: any) => {
     window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
     
     const clicked = listRef.current[userID]
-    const clickHandler = (e: any) => {
+    const clickHandler : { (e: MouseEvent): void } = (e: MouseEvent) => {
       if ((clicked != undefined || null) && (!clicked.contains(e.target))) {
         clicked.className = "displayNone";
       }
@@ -100,7 +104,7 @@ const DashboardUsersTable = ({tableData}: any) => {
 
   //Memoizing the data sent to the table.
   
-  const tableColumns = useMemo(() => [
+  const tableColumns = useMemo<Column[]>(() => [
     {
       Header: "ORGANIZATION",
       accessor: "orgName"
@@ -135,7 +139,7 @@ const DashboardUsersTable = ({tableData}: any) => {
       {
         id: "details",
         Cell: ({row}: any) => (
-          <div onClick={(e) => handleDetails(row)} className='detailsBtn'>
+          <div onClick={() => handleDetails(row)} className='detailsBtn'>
             <img src={icons.details} alt="details" />
             <div ref={ (node) => {listRef.current[row.id] = node}} className={"displayNone " + "row" + row.id}>
               <Link className="actions" to="/user-details" ><img src={icons.eye} alt="eye" /><p>View Details</p></Link>

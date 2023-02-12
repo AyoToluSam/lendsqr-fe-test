@@ -1,27 +1,26 @@
 import { icons } from '../../constants'
+import { Iuser } from '../../constants/types'
 
+type Idata = {
+  data: Iuser[]
+}
 
-type cardDataTypes = {
+type IcardData = {
   iconUrl: string,
   title: string,
-  userNum: string,
+  userNum: number,
   color: string
 }
 
 
 type CardProps = {
-  cardDetails: {
-    iconUrl: string,
-    title: string,
-    userNum: string,
-    color: string
-  }
+  cardDetails: IcardData
 }
 
 //Mapping through an array of onjects to dynamically generate the stats
 //cards on the dashboard.
 
-const DashboardCardList = ({data} : any) => {
+const DashboardCardList = ({data} : Idata) => {
   
   const Card = ({cardDetails}: CardProps) => {
     return (
@@ -37,7 +36,7 @@ const DashboardCardList = ({data} : any) => {
   let activeUsers = 0
   let usersLoans = 0
   let usersSavings = 0
-  data.map( (each : any) => {
+  data.map( (each) => {
     if (each.status === "Active") {
       activeUsers++
     }
@@ -49,7 +48,7 @@ const DashboardCardList = ({data} : any) => {
     }
   })
 
-  const cardData: cardDataTypes[] = [
+  const cardData: IcardData[] = [
     {
       iconUrl: icons.groupUsers,
       title: "USERS",
