@@ -1,8 +1,10 @@
 import { DashboardNav, DashboardList, DashboardUserDetails } from '../../components'
 import { icons } from '../../constants'
+import { Link } from 'react-router-dom'
 
 
 const UsersDetails = () => {
+  
   return (
     <div className='container'>
       <div className='app_userDetails'>
@@ -13,7 +15,7 @@ const UsersDetails = () => {
             <div className='userDetails_menuHeader'>
               <div className='userDetails_title'>
                 <div className='userDetails_backBtn'>
-                  <img src={icons.arrowBack} alt="" />
+                <Link to="/dashboard" ><img src={icons.arrowBack} alt="" /></Link>
                   <p>Back to Users</p>
                 </div>
                 <h2>User Details</h2>

@@ -1,4 +1,4 @@
-import { useMemo, useState, useRef, useEffect } from 'react'
+import { useMemo, useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTable, usePagination, Column } from 'react-table';
 import { icons } from '../../constants';
@@ -12,8 +12,8 @@ type DashboardUsersTableProps = {
 
 const DashboardUsersTable = ({tableData}: DashboardUsersTableProps) => {
 
-  const [userID, setUserID] = useState<number>(1);
-  const [userDetails, setUserDetails] = useState<Iuser>();
+  const [userID, setUserID] = useState<number>();
+  const [userDetails, setUserDetails] = useState<any>();
   const [open, setOpen] = useState(false);
 
   //ListRef targets column 6 of the table. It is to assign a ref to each 
@@ -30,9 +30,9 @@ const DashboardUsersTable = ({tableData}: DashboardUsersTableProps) => {
 
     const clicked = listRef.current[row.id]
     clicked.className = "viewDetails";
-    
-    setUserID(Number(row.id))
-
+    console.log("RowId: ",row.id)
+    setUserID(row.id)
+    console.log("RowOriginal: ", row.original)
     setUserDetails(row.original)
   }
 
@@ -41,9 +41,11 @@ const DashboardUsersTable = ({tableData}: DashboardUsersTableProps) => {
   //outside of it.
 
   useEffect(() => {
+    console.log("UserId: ", userID)
+    console.log("UserDetails: ", userDetails)
     window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
     
-    const clicked = listRef.current[userID]
+    const clicked = userID !== undefined ? listRef.current[userID] : null
     const clickHandler : { (e: MouseEvent): void } = (e: MouseEvent) => {
       if ((clicked != undefined || null) && (!clicked.contains(e.target))) {
         clicked.className = "displayNone";
@@ -55,7 +57,7 @@ const DashboardUsersTable = ({tableData}: DashboardUsersTableProps) => {
       document.removeEventListener("mousedown", clickHandler)
     }
 
-  }, [userID])
+  }, [userID, userDetails])
 
   //Memoizing the data sent to the table.
   

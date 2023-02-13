@@ -1,45 +1,13 @@
-import moment from 'moment';
-import axios from 'axios';
-import { useState, useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 import { DashboardCardList, DashboardList, DashboardNav, DashboardUsersTable } from '../../components'
-import { Iuser } from '../../constants/types';
+import { useDetails } from '../../App';
 
 
 const Dashboard = () => {
-  
-  const [usersData, setUsersData] = useState<Iuser[]>([]);
 
-  //Fetching data from API at saving it into the above state
-
-  const fetchUsersData = async () => {
-
-    const url = "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users"
-
-    const response = await axios.get(url).catch(err => console.log(err));
-
-    if (response) {
-      console.log(response.data);
-      setUsersData(response.data);
-    }
-  }
-
-  useEffect(() => {
-    fetchUsersData();
-  }, [])
-
-  //Declaring the possible statuses and generating random status
-  //for users.
-  //Also formatting the dates in the same array loop
-
-  const statusArray = ["Inactive", "Pending", "Blacklisted", "Active"];
-  
-  const formattedData = usersData.map( (each) => {
-    const date =  moment(each.createdAt).format('MMMM Do YYYY, h:mm a');
-    const returnData = { ...each, ...{createdAt: date, status: statusArray[Math.floor(Math.random()*4)]}}
-    return returnData
-  })
+  const data = useDetails()
     
-  const tableData = useMemo(() => [...formattedData], [formattedData])
+  const tableData = useMemo(() => [...data], [data])
 
   return (
     <div className='container'>
