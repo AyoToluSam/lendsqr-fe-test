@@ -30,9 +30,7 @@ const DashboardUsersTable = ({tableData}: DashboardUsersTableProps) => {
 
     const clicked = listRef.current[row.id]
     clicked.className = "viewDetails";
-    console.log("RowId: ",row.id)
     setUserID(row.id)
-    console.log("RowOriginal: ", row.original)
     setUserDetails(row.original)
   }
 
@@ -41,8 +39,6 @@ const DashboardUsersTable = ({tableData}: DashboardUsersTableProps) => {
   //outside of it.
 
   useEffect(() => {
-    console.log("UserId: ", userID)
-    console.log("UserDetails: ", userDetails)
     window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
     
     const clicked = userID !== undefined ? listRef.current[userID] : null

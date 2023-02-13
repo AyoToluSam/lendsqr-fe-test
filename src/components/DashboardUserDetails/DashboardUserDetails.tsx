@@ -23,19 +23,13 @@ const DashboardUserDetails = () => {
   const data = useDetails();
   
   //Getting the data sent over from the dashboard page
-  
-  console.log(window.localStorage.hasOwnProperty("userDetails"))
-  
+    
   const userDetails = window.localStorage.getItem("userDetails");
-  
-  console.log("userDetails: ", userDetails);
-  
+    
   //Parsing the data
   
   const parsedData =  (userDetails !== undefined && userDetails !== null) ? JSON.parse(userDetails || "") : data[0]
   
-  console.log("parsedData: ", parsedData)
-
   // Each card component
 
   const Card = ({cardTitle, cardContent}: CardProps) => {
