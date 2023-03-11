@@ -1,8 +1,6 @@
 # LendSqr
 
-This project was developed by me as a Frontend Development Assessment while job interviewing at Lendsqr.
-
-> View Live project [here](https://ayodele-samuel-lendsqr-fe-test.vercel.app) 
+> View Live project [here](https://ayotolusam-lendsqr.vercel.app) 
 
 ## Technologies I've Used
 
